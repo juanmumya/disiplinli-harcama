@@ -1,0 +1,2023 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Disiplinli Harcama</title>
+
+<!-- PWA -->
+<link rel="manifest" href="./manifest.json">
+
+<meta name="theme-color" content="#222222">
+
+<meta
+    name="mobile-web-app-capable"
+    content="yes"
+>
+
+<meta
+    name="apple-mobile-web-app-capable"
+    content="yes"
+>
+
+<meta
+    name="apple-mobile-web-app-status-bar-style"
+    content="black-translucent"
+>
+
+<meta
+    name="apple-mobile-web-app-title"
+    content="Disiplin"
+>
+
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f5f7;
+    color: #222;
+}
+
+.container {
+    max-width: 600px;
+    margin: auto;
+    padding: 18px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #777;
+    margin-bottom: 20px;
+}
+
+.card {
+    background: white;
+    border-radius: 16px;
+    padding: 18px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+}
+
+.card h2 {
+    margin-top: 0;
+    font-size: 19px;
+}
+
+.big-number {
+    font-size: 32px;
+    font-weight: bold;
+    margin: 8px 0;
+}
+
+.green {
+    color: #159447;
+}
+
+.red {
+    color: #d93025;
+}
+
+.blue {
+    color: #2864d7;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 13px;
+    margin: 7px 0;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+button {
+    width: 100%;
+    padding: 13px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 7px;
+}
+
+.primary {
+    background: #222;
+    color: white;
+}
+
+.secondary {
+    background: #e9edf5;
+    color: #222;
+}
+
+.danger {
+    background: #d93025;
+    color: white;
+}
+
+.install-button {
+    background: #222;
+    color: white;
+    margin-bottom: 15px;
+}
+
+.item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 11px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.item:last-child {
+    border-bottom: none;
+}
+
+.quote {
+    font-size: 18px;
+    line-height: 1.5;
+    font-weight: bold;
+    text-align: center;
+}
+
+.motivation {
+    background: #fff4d6;
+    border-left: 5px solid #f2b400;
+    padding: 14px;
+    border-radius: 10px;
+    line-height: 1.5;
+}
+
+.progress {
+    width: 100%;
+    height: 12px;
+    background: #eee;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 10px 0;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background: #222;
+    transition: width 0.3s;
+}
+
+.small {
+    color: #777;
+    font-size: 14px;
+}
+
+.stop-box {
+    display: none;
+    background: #fff0f0;
+    border: 2px solid #d93025;
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.stop-box h2 {
+    color: #d93025;
+    font-size: 30px;
+    margin: 0 0 10px;
+}
+
+.choice-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.choice-buttons button {
+    flex: 1;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.stat {
+    background: #f7f7f7;
+    border-radius: 12px;
+    padding: 13px;
+}
+
+.stat-title {
+    color: #777;
+    font-size: 13px;
+}
+
+.stat-value {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+
+<h1>💪 Disiplinli Harcama</h1>
+
+<div class="subtitle">
+    Daha az harca. Daha çok yatırım yap.
+</div>
+
+
+<!-- TELEFONA EKLE -->
+
+<button
+    id="installAppButton"
+    class="install-button"
+    onclick="installPWA()"
+>
+    📱 Uygulamayı Telefona Ekle
+</button>
+
+
+<!-- STOP -->
+
+<div
+    class="stop-box"
+    id="stopBox"
+>
+
+    <h2>🛑 STOP</h2>
+
+    <p>
+        Bu ürünü gerçekten ihtiyacın olduğu için mi almak istiyorsun?
+        Yoksa sadece gördüğün için mi?
+    </p>
+
+    <p>
+        <strong>
+            Sen harcamalarını kontrol etmeye karar verdin.
+            Yatırım yapmak istiyorsun.
+        </strong>
+    </p>
+
+    <p>
+        Sen disiplinli birisin.
+        <strong>Sözünde dur.</strong>
+    </p>
+
+    <div class="choice-buttons">
+
+        <button
+            class="primary"
+            onclick="needIt()"
+        >
+            Gerçekten ihtiyacım var
+        </button>
+
+        <button
+            class="secondary"
+            onclick="skipIt()"
+        >
+            Vazgeçtim
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- BAKİYE -->
+
+<div class="card">
+
+    <h2>💰 Mevcut Bakiyem</h2>
+
+    <div
+        class="big-number green"
+        id="balanceDisplay"
+    >
+        30,00 €
+    </div>
+
+    <div class="small">
+        Bu para, aylık bütçenden bağımsızdır.
+    </div>
+
+    <input
+        id="addBalance"
+        type="number"
+        step="0.01"
+        min="0"
+        placeholder="Bakiyeye eklenecek miktar"
+    >
+
+    <button
+        class="primary"
+        onclick="addBalance()"
+    >
+        ➕ Bakiyeye Para Ekle
+    </button>
+
+    <input
+        id="setBalanceInput"
+        type="number"
+        step="0.01"
+        min="0"
+        placeholder="Bakiyeyi istediğim değere ayarla"
+    >
+
+    <button
+        class="secondary"
+        onclick="setBalance()"
+    >
+        ✏️ Bakiyeyi Değiştir
+    </button>
+
+</div>
+
+
+<!-- AYLIK BÜTÇE -->
+
+<div class="card">
+
+    <h2>🎯 Aylık Harcama Limiti</h2>
+
+    <div
+        class="big-number blue"
+        id="monthlyBudgetDisplay"
+    >
+        400,00 €
+    </div>
+
+    <div>
+        Harcanan:
+        <strong id="monthlySpentDisplay">
+            0,00 €
+        </strong>
+    </div>
+
+    <div>
+        Kalan:
+        <strong id="monthlyRemainingDisplay">
+            400,00 €
+        </strong>
+    </div>
+
+    <div class="progress">
+
+        <div
+            class="progress-bar"
+            id="budgetProgress"
+        ></div>
+
+    </div>
+
+    <input
+        id="monthlyBudgetInput"
+        type="number"
+        step="0.01"
+        min="0"
+        placeholder="Yeni aylık limit"
+    >
+
+    <button
+        class="primary"
+        onclick="setMonthlyBudget()"
+    >
+        🎯 Aylık Limiti Değiştir
+    </button>
+
+    <button
+        class="secondary"
+        onclick="newMonth()"
+    >
+        🔄 Yeni Ay Başlat
+    </button>
+
+</div>
+
+
+<!-- KATEGORİLER -->
+
+<div class="card">
+
+    <h2>📊 Kategori Limitleri</h2>
+
+    <label>
+        🍔 Yemek Limiti
+    </label>
+
+    <input
+        id="foodBudgetInput"
+        type="number"
+        step="0.01"
+        min="0"
+        placeholder="Örn. 200"
+    >
+
+    <label>
+        🎮 Eğlence / Kişisel Limiti
+    </label>
+
+    <input
+        id="funBudgetInput"
+        type="number"
+        step="0.01"
+        min="0"
+        placeholder="Örn. 200"
+    >
+
+    <button
+        class="secondary"
+        onclick="saveCategoryBudgets()"
+    >
+        💾 Kategori Limitlerini Kaydet
+    </button>
+
+    <div
+        class="stats"
+        style="margin-top:12px;"
+    >
+
+        <div class="stat">
+
+            <div class="stat-title">
+                🍔 Yemek
+            </div>
+
+            <div
+                class="stat-value"
+                id="foodStatus"
+            >
+                0,00 € / 200,00 €
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-title">
+                🎮 Eğlence
+            </div>
+
+            <div
+                class="stat-value"
+                id="funStatus"
+            >
+                0,00 € / 200,00 €
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- HARCAMA -->
+
+<div class="card">
+
+    <h2>💸 Harcama Ekle</h2>
+
+    <input
+        id="expenseAmount"
+        type="number"
+        step="0.01"
+        min="0"
+        placeholder="Harcama miktarı"
+    >
+
+    <select id="expenseCategory">
+
+        <option value="food">
+            🍔 Yemek
+        </option>
+
+        <option value="fun">
+            🎮 Eğlence / Kişisel
+        </option>
+
+        <option value="other">
+            📦 Diğer
+        </option>
+
+    </select>
+
+    <button
+        class="primary"
+        onclick="addExpense()"
+    >
+        💸 Harcamayı Kaydet
+    </button>
+
+</div>
+
+
+<!-- ALIŞVERİŞ LİSTESİ -->
+
+<div class="card">
+
+    <h2>🛒 Alışveriş Listem</h2>
+
+    <input
+        id="shoppingItem"
+        type="text"
+        placeholder="Örn. 2 kg muz"
+    >
+
+    <button
+        class="primary"
+        onclick="addShoppingItem()"
+    >
+        ➕ Listeye Ekle
+    </button>
+
+    <button
+        class="secondary"
+        onclick="showStop()"
+    >
+        🛑 Plansız Bir Ürün Almak İstiyorum
+    </button>
+
+    <div id="shoppingList"></div>
+
+</div>
+
+
+<!-- DİSİPLİN -->
+
+<div class="card">
+
+    <h2>🏆 Disiplin Skorum</h2>
+
+    <div
+        class="big-number"
+        id="scoreDisplay"
+    >
+        0
+    </div>
+
+    <p class="small">
+        Gereksiz bir alışverişten vazgeçtiğinde
+        +10 puan kazanırsın.
+    </p>
+
+</div>
+
+
+<!-- GÜNLÜK SÖZ -->
+
+<div class="card">
+
+    <h2>🔥 Bugünün Sözü</h2>
+
+    <div
+        class="quote"
+        id="dailyQuote"
+    ></div>
+
+</div>
+
+
+<!-- KİŞİSEL MESAJ -->
+
+<div class="card">
+
+    <h2>🧠 Kendime Hatırlatma</h2>
+
+    <div
+        class="motivation"
+        id="motivationDisplay"
+    ></div>
+
+    <input
+        id="motivationInput"
+        type="text"
+        placeholder="Kendine yazacağın mesaj"
+    >
+
+    <button
+        class="secondary"
+        onclick="saveMotivation()"
+    >
+        💾 Mesajı Kaydet
+    </button>
+
+</div>
+
+
+<!-- VERİLER -->
+
+<div class="card">
+
+    <h2>⚙️ Veri Yönetimi</h2>
+
+    <button
+        class="danger"
+        onclick="resetAllData()"
+    >
+        🗑️ Tüm Verileri Sıfırla
+    </button>
+
+    <p class="small">
+        Bu işlem bakiye, bütçe, harcamalar,
+        alışveriş listesi ve disiplin skorunu sıfırlar.
+    </p>
+
+</div>
+
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   SABİT AYARLAR
+===================================================== */
+
+const STORAGE_KEY = "disiplinDataV4";
+
+
+const DEFAULT_MOTIVATION =
+    "Sen disiplinli birisin. Sözünde dur. " +
+    "Bugün harcamadığın her gereksiz para, " +
+    "gelecekteki yatırımına katkı sağlar.";
+
+
+const QUOTES = [
+
+    "İhtiyacın olmayan şeyi satın almamak da bir kazançtır.",
+
+    "Bugünkü disiplinin yarının özgürlüğünü satın alır.",
+
+    "Para harcamamak kayıp değildir. Kontrol sende demektir.",
+
+    "Her gereksiz alışveriş, yatırımından çalınan paradır.",
+
+    "İstiyorum başka, ihtiyacım var başka.",
+
+    "Kendine verdiğin sözü tut.",
+
+    "Disiplin, motivasyon olmadığında da doğru şeyi yapmaktır.",
+
+    "Bir ürün seni zengin etmez. Ama küçük harcamaları kontrol etmek eder.",
+
+    "Bugün kendini tut. Gelecekte kendine teşekkür et.",
+
+    "Gerçek ihtiyaç ile anlık hevesi ayır.",
+
+    "Para cebinde kaldığında da bir iş yapıyor: sana seçenek bırakıyor.",
+
+    "Sabır da bir yatırımdır.",
+
+    "Her 'hayır', finansal özgürlüğüne bir 'evet'tir.",
+
+    "Almadan önce dur. Düşün. Sonra karar ver.",
+
+    "Sen paranı yönetirsin. Paran seni yönetmez.",
+
+    "Küçük harcamalar küçük görünür, toplamı büyük olur.",
+
+    "Bugünkü rahatlık yerine gelecekteki özgürlüğü seç.",
+
+    "İndirimde olması ihtiyacın olduğu anlamına gelmez.",
+
+    "Gördüğün her şeyi almak zorunda değilsin.",
+
+    "Disiplinli olmak kendine ceza vermek değildir.",
+
+    "Hedefin varsa her harcama bir seçimdir.",
+
+    "Zenginlik sadece daha çok kazanmak değil, daha iyi yönetmektir.",
+
+    "Bugün gereksiz bir şey alma. Yatırımına alan aç.",
+
+    "Bir dakika beklemek bile gereksiz bir alışverişi kurtarabilir.",
+
+    "Sen kontrolü elinde tutuyorsun.",
+
+    "İhtiyacın yoksa indirim bile pahalıdır.",
+
+    "Gelecekteki sen bugünkü kararlarını hatırlayacak.",
+
+    "Para biriktirmek sıkıcı değil. Özgürlük satın almaktır.",
+
+    "Kendini kanıtlaman gereken kişi sensin.",
+
+    "Söz verdin. Şimdi sözünü tut."
+
+];
+
+
+/* =====================================================
+   SAYI KONTROLÜ
+===================================================== */
+
+function safeNumber(value, fallback = 0) {
+
+    const number = Number(value);
+
+    if (Number.isFinite(number)) {
+        return number;
+    }
+
+    return fallback;
+}
+
+
+function euro(value) {
+
+    const number =
+        safeNumber(value, 0);
+
+    return (
+        number
+            .toFixed(2)
+            .replace(".", ",") +
+        " €"
+    );
+}
+
+
+/* =====================================================
+   VERİLER
+===================================================== */
+
+const DEFAULT_DATA = {
+
+    balance: 30,
+
+    monthlyBudget: 400,
+
+    monthlySpent: 0,
+
+    foodBudget: 200,
+
+    funBudget: 200,
+
+    foodSpent: 0,
+
+    funSpent: 0,
+
+    otherSpent: 0,
+
+    score: 0,
+
+    shoppingItems: [],
+
+    motivation: DEFAULT_MOTIVATION
+
+};
+
+
+function loadData() {
+
+    try {
+
+        const raw =
+            localStorage.getItem(STORAGE_KEY);
+
+        if (!raw) {
+
+            return {
+                ...DEFAULT_DATA
+            };
+
+        }
+
+        const oldData =
+            JSON.parse(raw);
+
+        const data = {
+            ...DEFAULT_DATA,
+            ...oldData
+        };
+
+
+        data.balance =
+            safeNumber(
+                data.balance,
+                30
+            );
+
+
+        data.monthlyBudget =
+            safeNumber(
+                data.monthlyBudget,
+                400
+            );
+
+
+        data.monthlySpent =
+            safeNumber(
+                data.monthlySpent,
+                0
+            );
+
+
+        data.foodBudget =
+            safeNumber(
+                data.foodBudget,
+                200
+            );
+
+
+        data.funBudget =
+            safeNumber(
+                data.funBudget,
+                200
+            );
+
+
+        data.foodSpent =
+            safeNumber(
+                data.foodSpent,
+                0
+            );
+
+
+        data.funSpent =
+            safeNumber(
+                data.funSpent,
+                0
+            );
+
+
+        data.otherSpent =
+            safeNumber(
+                data.otherSpent,
+                0
+            );
+
+
+        data.score =
+            safeNumber(
+                data.score,
+                0
+            );
+
+
+        if (
+            !Array.isArray(
+                data.shoppingItems
+            )
+        ) {
+
+            data.shoppingItems = [];
+
+        }
+
+
+        if (
+            typeof data.motivation !==
+            "string"
+        ) {
+
+            data.motivation =
+                DEFAULT_MOTIVATION;
+
+        }
+
+
+        return data;
+
+    } catch (error) {
+
+        console.log(
+            "Veri okunamadı:",
+            error
+        );
+
+        return {
+            ...DEFAULT_DATA
+        };
+
+    }
+
+}
+
+
+let data = loadData();
+
+
+function saveData() {
+
+    try {
+
+        localStorage.setItem(
+            STORAGE_KEY,
+            JSON.stringify(data)
+        );
+
+    } catch (error) {
+
+        console.log(
+            "Veri kaydedilemedi:",
+            error
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   BAKİYE
+===================================================== */
+
+function addBalance() {
+
+    const input =
+        document.getElementById(
+            "addBalance"
+        );
+
+
+    const value =
+        safeNumber(
+            input.value.replace(",", "."),
+            NaN
+        );
+
+
+    if (
+        !Number.isFinite(value) ||
+        value <= 0
+    ) {
+
+        alert(
+            "Lütfen geçerli bir miktar gir."
+        );
+
+        return;
+
+    }
+
+
+    data.balance =
+        safeNumber(
+            data.balance,
+            0
+        ) + value;
+
+
+    saveData();
+
+    input.value = "";
+
+    render();
+
+
+    alert(
+        euro(value) +
+        " bakiyene eklendi."
+    );
+
+}
+
+
+function setBalance() {
+
+    const input =
+        document.getElementById(
+            "setBalanceInput"
+        );
+
+
+    const value =
+        safeNumber(
+            input.value.replace(",", "."),
+            NaN
+        );
+
+
+    if (
+        !Number.isFinite(value) ||
+        value < 0
+    ) {
+
+        alert(
+            "Lütfen geçerli bir bakiye gir."
+        );
+
+        return;
+
+    }
+
+
+    data.balance = value;
+
+    saveData();
+
+    input.value = "";
+
+    render();
+
+}
+
+
+/* =====================================================
+   AYLIK BÜTÇE
+===================================================== */
+
+function setMonthlyBudget() {
+
+    const input =
+        document.getElementById(
+            "monthlyBudgetInput"
+        );
+
+
+    const value =
+        safeNumber(
+            input.value.replace(",", "."),
+            NaN
+        );
+
+
+    if (
+        !Number.isFinite(value) ||
+        value < 0
+    ) {
+
+        alert(
+            "Lütfen geçerli bir aylık limit gir."
+        );
+
+        return;
+
+    }
+
+
+    data.monthlyBudget = value;
+
+    saveData();
+
+    input.value = "";
+
+    render();
+
+}
+
+
+function newMonth() {
+
+    const answer =
+        prompt(
+            "Yeni ay için aylık harcama limitin kaç € olsun?",
+            "400"
+        );
+
+
+    if (answer === null) {
+        return;
+    }
+
+
+    const newBudget =
+        safeNumber(
+            answer.replace(",", "."),
+            NaN
+        );
+
+
+    if (
+        !Number.isFinite(newBudget) ||
+        newBudget < 0
+    ) {
+
+        alert(
+            "Geçerli bir miktar gir."
+        );
+
+        return;
+
+    }
+
+
+    data.monthlyBudget =
+        newBudget;
+
+
+    data.monthlySpent = 0;
+
+    data.foodSpent = 0;
+
+    data.funSpent = 0;
+
+    data.otherSpent = 0;
+
+
+    saveData();
+
+    render();
+
+
+    alert(
+        "Yeni ay başlatıldı.\n\n" +
+        "Aylık limitin: " +
+        euro(newBudget) +
+        "\n\n" +
+        "Mevcut bakiyen değiştirilmedi."
+    );
+
+}
+
+
+/* =====================================================
+   KATEGORİ LİMİTLERİ
+===================================================== */
+
+function saveCategoryBudgets() {
+
+    const food =
+        safeNumber(
+            document
+                .getElementById(
+                    "foodBudgetInput"
+                )
+                .value
+                .replace(",", "."),
+            NaN
+        );
+
+
+    const fun =
+        safeNumber(
+            document
+                .getElementById(
+                    "funBudgetInput"
+                )
+                .value
+                .replace(",", "."),
+            NaN
+        );
+
+
+    if (
+        !Number.isFinite(food) ||
+        food < 0 ||
+        !Number.isFinite(fun) ||
+        fun < 0
+    ) {
+
+        alert(
+            "Lütfen iki kategori için de geçerli miktar gir."
+        );
+
+        return;
+
+    }
+
+
+    data.foodBudget = food;
+
+    data.funBudget = fun;
+
+
+    saveData();
+
+    render();
+
+
+    alert(
+        "Kategori limitleri kaydedildi."
+    );
+
+}
+
+
+/* =====================================================
+   HARCAMA
+===================================================== */
+
+function addExpense() {
+
+    const amountInput =
+        document.getElementById(
+            "expenseAmount"
+        );
+
+
+    const category =
+        document.getElementById(
+            "expenseCategory"
+        ).value;
+
+
+    const amount =
+        safeNumber(
+            amountInput.value.replace(",", "."),
+            NaN
+        );
+
+
+    if (
+        !Number.isFinite(amount) ||
+        amount <= 0
+    ) {
+
+        alert(
+            "Geçerli bir harcama miktarı gir."
+        );
+
+        return;
+
+    }
+
+
+    const remaining =
+        safeNumber(
+            data.monthlyBudget,
+            0
+        ) -
+        safeNumber(
+            data.monthlySpent,
+            0
+        );
+
+
+    if (amount > remaining) {
+
+        alert(
+            "⚠️ Bu harcama aylık limitini aşıyor.\n\n" +
+            "Aylık kalan: " +
+            euro(remaining)
+        );
+
+        return;
+
+    }
+
+
+    if (amount > data.balance) {
+
+        const answer =
+            confirm(
+                "⚠️ Bu harcama mevcut bakiyenden fazla.\n\n" +
+                "Bakiyen: " +
+                euro(data.balance) +
+                "\n" +
+                "Harcama: " +
+                euro(amount) +
+                "\n\n" +
+                "Yine de harcamayı kaydetmek istiyor musun?"
+            );
+
+
+        if (!answer) {
+            return;
+        }
+
+    }
+
+
+    data.monthlySpent =
+        safeNumber(
+            data.monthlySpent,
+            0
+        ) + amount;
+
+
+    if (category === "food") {
+
+        data.foodSpent =
+            safeNumber(
+                data.foodSpent,
+                0
+            ) + amount;
+
+    }
+
+    else if (category === "fun") {
+
+        data.funSpent =
+            safeNumber(
+                data.funSpent,
+                0
+            ) + amount;
+
+    }
+
+    else {
+
+        data.otherSpent =
+            safeNumber(
+                data.otherSpent,
+                0
+            ) + amount;
+
+    }
+
+
+    data.balance =
+        safeNumber(
+            data.balance,
+            0
+        ) - amount;
+
+
+    saveData();
+
+    amountInput.value = "";
+
+    render();
+
+
+    alert(
+        "💸 Harcama kaydedildi: " +
+        euro(amount)
+    );
+
+}
+
+
+/* =====================================================
+   ALIŞVERİŞ LİSTESİ
+===================================================== */
+
+function addShoppingItem() {
+
+    const input =
+        document.getElementById(
+            "shoppingItem"
+        );
+
+
+    const text =
+        input.value.trim();
+
+
+    if (!text) {
+
+        alert(
+            "Listeye bir ürün yaz."
+        );
+
+        return;
+
+    }
+
+
+    data.shoppingItems.push({
+
+        text: text,
+
+        bought: false
+
+    });
+
+
+    saveData();
+
+    input.value = "";
+
+    render();
+
+}
+
+
+function toggleShoppingItem(index) {
+
+    if (
+        !data.shoppingItems[index]
+    ) {
+        return;
+    }
+
+
+    data.shoppingItems[index].bought =
+        !data.shoppingItems[index].bought;
+
+
+    saveData();
+
+    render();
+
+}
+
+
+function deleteShoppingItem(index) {
+
+    if (
+        !data.shoppingItems[index]
+    ) {
+        return;
+    }
+
+
+    data.shoppingItems.splice(
+        index,
+        1
+    );
+
+
+    saveData();
+
+    render();
+
+}
+
+
+function renderShoppingList() {
+
+    const container =
+        document.getElementById(
+            "shoppingList"
+        );
+
+
+    if (
+        data.shoppingItems.length === 0
+    ) {
+
+        container.innerHTML =
+            '<p class="small">' +
+            'Listen şu anda boş.' +
+            '</p>';
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+        data.shoppingItems
+            .map(
+                (item, index) => {
+
+                    const text =
+                        item.bought
+                            ? `<s>${escapeHTML(item.text)}</s>`
+                            : escapeHTML(item.text);
+
+
+                    return `
+
+                        <div class="item">
+
+                            <span
+                                onclick="toggleShoppingItem(${index})"
+                                style="cursor:pointer;"
+                            >
+
+                                ${
+                                    item.bought
+                                        ? "✅"
+                                        : "⬜"
+                                }
+
+                                ${text}
+
+                            </span>
+
+
+                            <button
+                                onclick="deleteShoppingItem(${index})"
+                                style="
+                                    width:auto;
+                                    padding:7px 10px;
+                                    margin:0;
+                                    background:#eee;
+                                "
+                            >
+                                🗑️
+                            </button>
+
+                        </div>
+
+                    `;
+
+                }
+            )
+            .join("");
+
+}
+
+
+function escapeHTML(text) {
+
+    return String(text)
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+/* =====================================================
+   STOP SİSTEMİ
+===================================================== */
+
+function showStop() {
+
+    const stopBox =
+        document.getElementById(
+            "stopBox"
+        );
+
+
+    stopBox.style.display =
+        "block";
+
+
+    window.scrollTo({
+
+        top: 0,
+
+        behavior: "smooth"
+
+    });
+
+}
+
+
+function needIt() {
+
+    document.getElementById(
+        "stopBox"
+    ).style.display = "none";
+
+
+    alert(
+        "Tamam.\n\n" +
+        "Gerçekten ihtiyacın varsa alabilirsin.\n\n" +
+        "Ama kararını bilinçli verdiğinden emin ol."
+    );
+
+}
+
+
+function skipIt() {
+
+    document.getElementById(
+        "stopBox"
+    ).style.display = "none";
+
+
+    data.score =
+        safeNumber(
+            data.score,
+            0
+        ) + 10;
+
+
+    saveData();
+
+    render();
+
+
+    alert(
+        "🔥 Harika!\n\n" +
+        "+10 disiplin puanı.\n\n" +
+        "Sen disiplinli birisin.\n" +
+        "Sözünde durdun."
+    );
+
+}
+
+
+/* =====================================================
+   GÜNLÜK SÖZ
+===================================================== */
+
+function renderDailyQuote() {
+
+    const now =
+        new Date();
+
+
+    const start =
+        new Date(
+            now.getFullYear(),
+            0,
+            0
+        );
+
+
+    const diff =
+        now - start;
+
+
+    const oneDay =
+        1000 *
+        60 *
+        60 *
+        24;
+
+
+    const dayOfYear =
+        Math.floor(
+            diff / oneDay
+        );
+
+
+    const index =
+        dayOfYear %
+        QUOTES.length;
+
+
+    document.getElementById(
+        "dailyQuote"
+    ).textContent =
+        "“" +
+        QUOTES[index] +
+        "”";
+
+}
+
+
+/* =====================================================
+   MOTİVASYON
+===================================================== */
+
+function saveMotivation() {
+
+    const input =
+        document.getElementById(
+            "motivationInput"
+        );
+
+
+    const text =
+        input.value.trim();
+
+
+    if (!text) {
+
+        alert(
+            "Bir mesaj yaz."
+        );
+
+        return;
+
+    }
+
+
+    data.motivation = text;
+
+
+    saveData();
+
+    input.value = "";
+
+    render();
+
+}
+
+
+/* =====================================================
+   EKRANI GÜNCELLE
+===================================================== */
+
+function render() {
+
+    /* Bakiye */
+
+    document.getElementById(
+        "balanceDisplay"
+    ).textContent =
+        euro(
+            data.balance
+        );
+
+
+    /* Aylık bütçe */
+
+    const monthlyBudget =
+        safeNumber(
+            data.monthlyBudget,
+            0
+        );
+
+
+    const monthlySpent =
+        safeNumber(
+            data.monthlySpent,
+            0
+        );
+
+
+    const monthlyRemaining =
+        monthlyBudget -
+        monthlySpent;
+
+
+    document.getElementById(
+        "monthlyBudgetDisplay"
+    ).textContent =
+        euro(monthlyBudget);
+
+
+    document.getElementById(
+        "monthlySpentDisplay"
+    ).textContent =
+        euro(monthlySpent);
+
+
+    document.getElementById(
+        "monthlyRemainingDisplay"
+    ).textContent =
+        euro(monthlyRemaining);
+
+
+    /* İlerleme */
+
+    let percentage = 0;
+
+
+    if (monthlyBudget > 0) {
+
+        percentage =
+            (
+                monthlySpent /
+                monthlyBudget
+            ) * 100;
+
+    }
+
+
+    percentage =
+        Math.max(
+            0,
+            Math.min(
+                100,
+                percentage
+            )
+        );
+
+
+    document.getElementById(
+        "budgetProgress"
+    ).style.width =
+        percentage + "%";
+
+
+    /* Kategoriler */
+
+    document.getElementById(
+        "foodStatus"
+    ).textContent =
+        euro(data.foodSpent) +
+        " / " +
+        euro(data.foodBudget);
+
+
+    document.getElementById(
+        "funStatus"
+    ).textContent =
+        euro(data.funSpent) +
+        " / " +
+        euro(data.funBudget);
+
+
+    /* Skor */
+
+    document.getElementById(
+        "scoreDisplay"
+    ).textContent =
+        Math.round(
+            safeNumber(
+                data.score,
+                0
+            )
+        );
+
+
+    /* Motivasyon */
+
+    document.getElementById(
+        "motivationDisplay"
+    ).textContent =
+        data.motivation ||
+        DEFAULT_MOTIVATION;
+
+
+    /* Input değerleri */
+
+    document.getElementById(
+        "foodBudgetInput"
+    ).value =
+        safeNumber(
+            data.foodBudget,
+            0
+        );
+
+
+    document.getElementById(
+        "funBudgetInput"
+    ).value =
+        safeNumber(
+            data.funBudget,
+            0
+        );
+
+
+    renderShoppingList();
+
+    renderDailyQuote();
+
+}
+
+
+/* =====================================================
+   TÜM VERİLERİ SIFIRLA
+===================================================== */
+
+function resetAllData() {
+
+    const answer =
+        confirm(
+            "⚠️ DİKKAT\n\n" +
+            "Tüm bakiye, bütçe, harcama, liste ve disiplin puanı silinecek.\n\n" +
+            "Devam etmek istiyor musun?"
+        );
+
+
+    if (!answer) {
+        return;
+    }
+
+
+    localStorage.removeItem(
+        STORAGE_KEY
+    );
+
+
+    data = {
+        ...DEFAULT_DATA
+    };
+
+
+    saveData();
+
+    render();
+
+
+    alert(
+        "Tüm veriler sıfırlandı."
+    );
+
+}
+
+
+/* =====================================================
+   PWA
+===================================================== */
+
+let deferredPrompt = null;
+
+
+if (
+    "serviceWorker" in navigator
+) {
+
+    window.addEventListener(
+        "load",
+        function() {
+
+            navigator.serviceWorker
+                .register("./sw.js")
+
+                .then(
+                    function() {
+
+                        console.log(
+                            "Disiplin PWA hazır."
+                        );
+
+                    }
+                )
+
+                .catch(
+                    function(error) {
+
+                        console.log(
+                            "Service Worker hatası:",
+                            error
+                        );
+
+                    }
+                );
+
+        }
+    );
+
+}
+
+
+/* Android / Chrome gibi tarayıcılar */
+
+window.addEventListener(
+    "beforeinstallprompt",
+    function(event) {
+
+        event.preventDefault();
+
+        deferredPrompt = event;
+
+    }
+);
+
+
+async function installPWA() {
+
+    /* Chrome vb. */
+
+    if (deferredPrompt) {
+
+        deferredPrompt.prompt();
+
+        try {
+
+            await deferredPrompt.userChoice;
+
+        } catch (error) {
+
+            console.log(
+                "Kurulum seçimi:",
+                error
+            );
+
+        }
+
+        deferredPrompt = null;
+
+        return;
+
+    }
+
+
+    /* iPhone / Safari */
+
+    alert(
+        "📱 iPhone'da kurmak için:\n\n" +
+        "1. Safari'de bu uygulamayı aç.\n\n" +
+        "2. Paylaş ⬆️ düğmesine bas.\n\n" +
+        "3. 'Ana Ekrana Ekle' seçeneğine bas.\n\n" +
+        "4. 'Ekle' diyerek tamamla."
+    );
+
+}
+
+
+/* =====================================================
+   BAŞLANGIÇ
+===================================================== */
+
+render();
+
+</script>
+
+</body>
+</html>
